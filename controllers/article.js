@@ -5,13 +5,13 @@ const Article = require('../models/article');
  * @param res
  * @param req
  */
-exports.getAllArticle = (res, req) => {
+exports.getAllArticle = (req, res) => {
     Article.find()
         .then(
             articles => res.status(200).json(articles)
         )
         .catch(
-            error => res.status(400).json({error})
+            error => res.status(400).json(error)
         )
 }
 
@@ -20,7 +20,7 @@ exports.getAllArticle = (res, req) => {
  * @param res
  * @param req
  */
-exports.getOneArticle = (res, req) => {
+exports.getOneArticle = (req, res) => {
     Article.findOne({_id: req.params.id})
         .then(
             thing => res.status(200).json(thing)
@@ -35,7 +35,7 @@ exports.getOneArticle = (res, req) => {
  * @param res
  * @param req
  */
-exports.createArticle = (res, req) => {
+exports.createArticle = (req, res) => {
     new Article({...req.body}).save()
         .then(
             article => res.status(201).json(article)
@@ -49,7 +49,7 @@ exports.createArticle = (res, req) => {
  * @param res
  * @param req
  */
-exports.updateArticle = (res, req) => {
+exports.updateArticle = (req, res) => {
     Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
         .then(
             article => res.status(200).json(article)
@@ -64,7 +64,7 @@ exports.updateArticle = (res, req) => {
  * @param res
  * @param req
  */
-exports.deleteArticle = (res, req) => {
+exports.deleteArticle = (req, res) => {
     Article.deleteOne({_id: req.params.id}).then(
         () => res.status(204)
     ).catch(

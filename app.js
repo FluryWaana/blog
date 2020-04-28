@@ -10,6 +10,7 @@ const app = express();
 mongoose.connect('mongodb://ocruser:ocruser@127.0.0.1:27017/ocr?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
+        useCreateIndex: true,
         useUnifiedTopology: true
     })
     .then(
