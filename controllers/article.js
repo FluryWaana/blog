@@ -5,7 +5,7 @@ const Article = require('../models/article');
  * @param res
  * @param req
  */
-exports.getAllArticle = (req, res) => {
+exports.getAllArticles = (req, res) => {
     Article.find()
         .then(
             articles => res.status(200).json(articles)
